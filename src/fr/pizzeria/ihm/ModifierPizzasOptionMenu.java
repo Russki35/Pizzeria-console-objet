@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
 
-public class ModifierPizzasOptionMenu {
+public class ModifierPizzasOptionMenu extends OptionMenu {
 
 	Pizza[] pizzas;
 	Scanner sc;
@@ -31,18 +31,23 @@ public class ModifierPizzasOptionMenu {
 		nom = sc.next();
 		System.out.println("Saisissez le prix d'une pizza");
 		prix = sc.nextDouble();
+		
 		for (int i = 0; i < pizzas.length; i++) {
 
-			if (pizzas[i].getCode().equals(codeAModifier)) {
+			if (pizzas[i] != null) {
+				if (pizzas[i].getCode().equals(codeAModifier)) {
 
-				pizzas[i].setCode(code);
-				pizzas[i].setNom(nom);
-				pizzas[i].setPrix(prix);
+					pizzas[i].setCode(code);
+					pizzas[i].setNom(nom);
+					pizzas[i].setPrix(prix);
 
-				break;
+					break;
+
+				}
 
 			}
-
+			
+			
 		}
 
 	}

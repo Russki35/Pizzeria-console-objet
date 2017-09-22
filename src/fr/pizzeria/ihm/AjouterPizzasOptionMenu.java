@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
 
-public class AjouterPizzasOptionMenu {
+public class AjouterPizzasOptionMenu extends OptionMenu {
 
 	Pizza[] pizzas;
 	Scanner sc;
@@ -18,26 +18,28 @@ public class AjouterPizzasOptionMenu {
 
 	public void execute() {
 
-		String code;
-		String nom;
-		double prix;
+		
 
 		System.out.println("Ajout d'une nouvelle pizza");
 		System.out.println("Ajoutez le code d'une pizza");
 
-		code = sc.next();
+		String code = sc.next();
 		System.out.println("Ajoutez le nom d'une pizza");
-		nom = sc.next();
+		String nom = sc.next();
 		System.out.println("Ajoutez le prix d'une pizza");
-		prix = sc.nextDouble();
+		double prix = sc.nextDouble();
 
-		pizzas[8] = new Pizza(code, nom, prix);
-
+		
+		boolean added = false;
+		
 		for (int i = 0; i < pizzas.length; i++) {
+			
+			
+			if (pizzas[i] != null && added == false) {
 
-			if (pizzas[i] != null) {
-
+				pizzas[i] = new Pizza(code, nom, prix);
 				System.out.println(pizzas[i]);
+				added = true;
 
 			}
 

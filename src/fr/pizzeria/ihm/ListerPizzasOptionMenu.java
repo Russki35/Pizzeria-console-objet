@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
 
-public class ListerPizzasOptionMenu {
+public class ListerPizzasOptionMenu extends OptionMenu {
 	
 	
 	 Pizza[] pizzas;
