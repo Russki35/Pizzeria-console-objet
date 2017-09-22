@@ -11,26 +11,41 @@ public class Pizza {
 	
 	public Pizza(String code, String nom, double prix) {
 		
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
+		setCode(code);
+		setNom(nom);
+		setPrix(prix);
 		
 	}
 	
-	String getCode(){
-		
+	public String getCode() {
 		return code;
 	}
-	
-	String getNom(){
-		
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
+	public String getNom() {
 		return nom;
 	}
-	
-	double getPrix(){
-		
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public double getPrix() {
 		return prix;
 	}
+
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
 
 	@Override
 //	public String toString() {

@@ -9,6 +9,7 @@ public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
 
+		// Initialisation
 		Scanner questionUser = new Scanner(System.in).useLocale(Locale.US);
 		System.out.println("Liste des pizzas");
 
@@ -22,40 +23,93 @@ public class PizzeriaAdminConsoleApp {
 		pizzas[6] = new Pizza("ORI", "L'Orientale", 13.5);
 		pizzas[7] = new Pizza("IND", "L'indienne", 14);
 
-		for (int i = 0; i < pizzas.length; i++) {
+		// Affichage du menu
+		System.out.println("***** Pizzeria Administration *****");
+		System.out.println("1. Lister les pizzas");
+		System.out.println("2. Ajouter une nouvelle pizza");
+		System.out.println("3. Mettre à jour une pizza");
+		System.out.println("4. Supprimer une pizza");
+		System.out.println("99. Sortir");
+		
+		// Choix de l'utilisateur
+		System.out.println("Choisissez une option de menu:");
+		String choix = questionUser.next();
+		
+		if (choix.equals("1")){
+			for (int i = 0; i < pizzas.length; i++) {
+				if (pizzas[i] != null) {
+					System.out.println(pizzas[i]);
 
-			if (pizzas[i] != null) {
+				}
+			}
+		}
+		
+		if (choix.equals("2")){
+			String code;
+			String nom;
+			double prix;
 
-				System.out.println(pizzas[i]);
+			System.out.println("Ajout d'une nouvelle pizza");
+			System.out.println("Ajoutez le code d'une pizza");
+
+			code = questionUser.next();
+			System.out.println("Ajoutez le nom d'une pizza");
+			nom = questionUser.next();
+			System.out.println("Ajoutez le prix d'une pizza");
+			prix = questionUser.nextDouble();
+
+			pizzas[8] = new Pizza(code, nom, prix);
+
+			for (int i = 0; i < pizzas.length; i++) {
+
+				if (pizzas[i] != null) {
+
+					System.out.println(pizzas[i]);
+
+				}
 
 			}
-
 		}
 
-		String code;
-		String nom;
-		double prix;
+		if (choix.equals("3")){
+			System.out.println("Modifier une pizza");
+			
+			String code;
+			String nom;
+			double prix;
+			
+			String codeAModifier;
+			
+			System.out.println("Saisissez le code de la pizza à modifier");
+			codeAModifier = questionUser.next();
+			System.out.println("Saisissez le nouveau code");
+			code = questionUser.next();
+			System.out.println("Saisissez le nom d'une pizza");
+			nom = questionUser.next();
+			System.out.println("Saisissez le prix d'une pizza");
+			prix = questionUser.nextDouble();
+			
+			for (int i = 0; i < pizzas.length; i++) {
 
-		System.out.println("Ajout d'une nouvelle pizza");
-		System.out.println("Ajoutez le code d'une pizza");
+				if (pizzas[i].getCode().equals(codeAModifier)) {
 
-		code = questionUser.next();
-		System.out.println("Ajoutez le nom d'une pizza");
-		nom = questionUser.next();
-		System.out.println("Ajoutez le prix d'une pizza");
-		prix = questionUser.nextDouble();
+					pizzas[i].setCode(code);
+					pizzas[i].setNom(nom);
+					pizzas[i].setPrix(prix);
+					
+					break;
+					
 
-		pizzas[8] = new Pizza(code, nom, prix);
-
-		for (int i = 0; i < pizzas.length; i++) {
-
-			if (pizzas[i] != null) {
-
-				System.out.println(pizzas[i]);
+				}
+				
 
 			}
-
+		
+			
+			
 		}
+
+		
 
 	}
 
