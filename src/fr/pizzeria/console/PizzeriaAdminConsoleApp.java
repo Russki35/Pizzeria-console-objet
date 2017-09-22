@@ -3,6 +3,9 @@ package fr.pizzeria.console;
 import java.util.Locale;
 import java.util.Scanner;
 
+import fr.pizzeria.ihm.AjouterPizzasOptionMenu;
+import fr.pizzeria.ihm.ListerPizzasOptionMenu;
+import fr.pizzeria.ihm.ModifierPizzasOptionMenu;
 import fr.pizzeria.model.Pizza;
 
 public class PizzeriaAdminConsoleApp {
@@ -36,71 +39,27 @@ public class PizzeriaAdminConsoleApp {
 		String choix = questionUser.next();
 		
 		if (choix.equals("1")){
-			for (int i = 0; i < pizzas.length; i++) {
-				if (pizzas[i] != null) {
-					System.out.println(pizzas[i]);
-
-				}
-			}
+			
+			ListerPizzasOptionMenu listerPizzas = new ListerPizzasOptionMenu(pizzas, questionUser);
+			listerPizzas.execute();
 		}
 		
 		if (choix.equals("2")){
-			String code;
-			String nom;
-			double prix;
+			
+			
+			AjouterPizzasOptionMenu ajouterPizza = new AjouterPizzasOptionMenu(pizzas, questionUser);
+			ajouterPizza.execute();
 
-			System.out.println("Ajout d'une nouvelle pizza");
-			System.out.println("Ajoutez le code d'une pizza");
-
-			code = questionUser.next();
-			System.out.println("Ajoutez le nom d'une pizza");
-			nom = questionUser.next();
-			System.out.println("Ajoutez le prix d'une pizza");
-			prix = questionUser.nextDouble();
-
-			pizzas[8] = new Pizza(code, nom, prix);
-
-			for (int i = 0; i < pizzas.length; i++) {
-
-				if (pizzas[i] != null) {
-
-					System.out.println(pizzas[i]);
-
-				}
-
-			}
+			
 		}
 
 		if (choix.equals("3")){
-			System.out.println("Modifier une pizza");
 			
-			String code;
-			String nom;
-			double prix;
 			
-			String codeAModifier;
 			
-			System.out.println("Saisissez le code de la pizza à modifier");
-			codeAModifier = questionUser.next();
-			System.out.println("Saisissez le nouveau code");
-			code = questionUser.next();
-			System.out.println("Saisissez le nom d'une pizza");
-			nom = questionUser.next();
-			System.out.println("Saisissez le prix d'une pizza");
-			prix = questionUser.nextDouble();
 			
-			for (int i = 0; i < pizzas.length; i++) {
-
-				if (pizzas[i].getCode().equals(codeAModifier)) {
-
-					pizzas[i].setCode(code);
-					pizzas[i].setNom(nom);
-					pizzas[i].setPrix(prix);
-					
-					break;
-					
-
-				}
+			ModifierPizzasOptionMenu modifierPizzas = new ModifierPizzasOptionMenu(pizzas, questionUser);
+			modifierPizzas.execute();
 				
 
 			}
@@ -113,4 +72,4 @@ public class PizzeriaAdminConsoleApp {
 
 	}
 
-}
+

@@ -1,7 +1,5 @@
 package fr.pizzeria.model;
 
-import java.util.Scanner;
-
 public class Pizza {
 
 	int id;
