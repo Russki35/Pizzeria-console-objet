@@ -2,23 +2,22 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.PizzeriaDaoTableau;
 import fr.pizzeria.model.Pizza;
 
 public class AjouterPizzasOptionMenu extends OptionMenu {
 
-	Pizza[] pizzas;
+	PizzeriaDaoTableau dao;
 	Scanner sc;
 
-	public AjouterPizzasOptionMenu(Pizza[] pizzas, Scanner sc) {
+	public AjouterPizzasOptionMenu(PizzeriaDaoTableau dao, Scanner sc) {
 
-		this.pizzas = pizzas;
+		this.dao = dao;
 		this.sc = sc;
 
 	}
 
 	public void execute() {
-
-		
 
 		System.out.println("Ajout d'une nouvelle pizza");
 		System.out.println("Ajoutez le code d'une pizza");
@@ -30,21 +29,13 @@ public class AjouterPizzasOptionMenu extends OptionMenu {
 		double prix = sc.nextDouble();
 
 		
-		boolean added = false;
+		Pizza pizza = new Pizza(code, nom, prix);
 		
-		for (int i = 0; i < pizzas.length; i++) {
-			
-			
-			if (pizzas[i] != null && added == false) {
-
-				pizzas[i] = new Pizza(code, nom, prix);
-				System.out.println(pizzas[i]);
-				added = true;
-
-			}
+		PizzeriaDaoTableau ajoutPizza = new PizzeriaDaoTableau();
+		ajoutPizza.saveNewPizza(pizza);
 
 		}
 
 	}
 
-}
+
