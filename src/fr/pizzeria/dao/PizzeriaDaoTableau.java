@@ -2,39 +2,54 @@ package fr.pizzeria.dao;
 
 import fr.pizzeria.model.Pizza;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class PizzeriaDaoTableau implements IPizzaDao {
 	
-	Pizza[] pizzas = new Pizza[50];
-	
+
+	private ArrayList <Pizza> pizzas = new ArrayList<Pizza>();
+
+
 	public PizzeriaDaoTableau() {
 		
 		
-		pizzas[0] = new Pizza("PEP", "Pépéroni", 12.5);
-		pizzas[1] = new Pizza("MAR", "Margarita", 14);
-		pizzas[2] = new Pizza("REI", "La Reine", 11.5);
-		pizzas[3] = new Pizza("FRO", "La Quatre Fromages", 12);
-		pizzas[4] = new Pizza("CAN", "La Cannibale", 12.5);
-		pizzas[5] = new Pizza("SAV", "La Savoyarde", 13);
-		pizzas[6] = new Pizza("ORI", "L'Orientale", 13.5);
-		pizzas[7] = new Pizza("IND", "L'indienne", 14);
-
-	
+		
+		
+		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.5);
+		pizzas.add(pizza0);	
+		Pizza pizza1 = new Pizza("MAR", "Margarita", 14);
+		pizzas.add(pizza1);
+		Pizza pizza2 = new Pizza("REI", "La Reine", 11.5);
+		pizzas.add(pizza2);
+		Pizza pizza3 = new Pizza("FRO", "La Quatre Fromages", 12);
+		pizzas.add(pizza3);
+		Pizza pizza4 = new Pizza("CAN", "La Cannibale", 12.5);
+		pizzas.add(pizza4);
+		Pizza pizza5 = new Pizza("SAV", "La Savoyarde", 13);    
+		pizzas.add(pizza5);
+		Pizza pizza6 = new Pizza("ORI", "L'Orientale", 13.5);
+		pizzas.add(pizza6);
+		Pizza pizza7 = new Pizza("IND", "L'indienne", 14);
+		pizzas.add(pizza7);
 	}
 	
 	@Override
-	public Pizza[] findAllPizzas() {
+	public ArrayList<Pizza> findAllPizzas() {
 		// TODO Auto-generated method stub
+		
 		return this.pizzas;
 	}
 
 	@Override
-	public boolean saveNewPizza(Pizza pizza) {
+	public boolean saveNewPizza(Pizza pizzas) {
 		// TODO Auto-generated method stub
-		for(int i = 0; i<pizzas.length; i++){
+		for(int i = 0; i<pizzas.size(); i++){
 			
-			if (pizzas[i] != null) {
+			if (pizzas != null) {
 
-				pizzas[i] = pizza;
+				pizzas = pizza;
 				
 				
 				return true;
