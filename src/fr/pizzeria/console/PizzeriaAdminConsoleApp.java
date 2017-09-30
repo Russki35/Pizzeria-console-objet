@@ -8,6 +8,7 @@ import fr.pizzeria.dao.PizzeriaDaoTableau;
 import fr.pizzeria.ihm.AjouterPizzasOptionMenu;
 import fr.pizzeria.ihm.ListerPizzasOptionMenu;
 import fr.pizzeria.ihm.ModifierPizzasOptionMenu;
+import fr.pizzeria.ihm.SupprimerPizzasOptionMenu;
 import fr.pizzeria.model.Pizza;
 
 
@@ -62,6 +63,12 @@ public class PizzeriaAdminConsoleApp {
 				modifierPizzas.execute();
 					
 
+			}
+			
+			else if (choix.equals("4")){
+				
+				SupprimerPizzasOptionMenu supprimerPizza = new SupprimerPizzasOptionMenu(dao, questionUser);
+				supprimerPizza.execute();
 			}
 			
 			else if(choix.equals("99")){

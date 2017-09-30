@@ -20,13 +20,13 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 
 	public void execute(){
 		 
-		 ArrayList<Pizza> pizzas = dao.findAllPizzas();
+		 ArrayList<Pizza> pizza = dao.findAllPizzas();
 		 
-		 for(int i = 0; i < pizzas.size(); i++){
+		 for(int i = 0; i < pizza.size(); i++){
 			 
-			 if (pizzas != null) {
+			 if (pizza != null) {
 
-					System.out.println(pizzas.get(i));
+					System.out.println(pizza.get(i));
 			 }
 					
 					
