@@ -9,7 +9,7 @@ import java.util.List;
 public class PizzeriaDaoTableau implements IPizzaDao {
 	
 
-	private ArrayList <Pizza> pizzas = new ArrayList<Pizza>();
+	private ArrayList <Pizza> pizza = new ArrayList<Pizza>();
 
 
 	public PizzeriaDaoTableau() {
@@ -18,41 +18,39 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 		
 		
 		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.5);
-		pizzas.add(pizza0);	
+		pizza.add(pizza0);	
 		Pizza pizza1 = new Pizza("MAR", "Margarita", 14);
-		pizzas.add(pizza1);
+		pizza.add(pizza1);
 		Pizza pizza2 = new Pizza("REI", "La Reine", 11.5);
-		pizzas.add(pizza2);
+		pizza.add(pizza2);
 		Pizza pizza3 = new Pizza("FRO", "La Quatre Fromages", 12);
-		pizzas.add(pizza3);
+		pizza.add(pizza3);
 		Pizza pizza4 = new Pizza("CAN", "La Cannibale", 12.5);
-		pizzas.add(pizza4);
+		pizza.add(pizza4);
 		Pizza pizza5 = new Pizza("SAV", "La Savoyarde", 13);    
-		pizzas.add(pizza5);
+		pizza.add(pizza5);
 		Pizza pizza6 = new Pizza("ORI", "L'Orientale", 13.5);
-		pizzas.add(pizza6);
+		pizza.add(pizza6);
 		Pizza pizza7 = new Pizza("IND", "L'indienne", 14);
-		pizzas.add(pizza7);
+		pizza.add(pizza7);
 	}
 	
 	@Override
 	public ArrayList<Pizza> findAllPizzas() {
-		// TODO Auto-generated method stub
 		
-		return this.pizzas;
+		
+		return this.pizza;
 	}
 
 	@Override
-	public boolean saveNewPizza(Pizza pizzas) {
+	public boolean saveNewPizza(Pizza pizza) {
 		// TODO Auto-generated method stub
-		for(int i = 0; i<pizzas.size(); i++){
+		for(int i = 0; i<((List<Pizza>) pizza).size(); i++){
 			
-			if (pizzas != null) {
+			if (pizza != null) {
 
-				pizzas = pizza;
 				
-				
-				return true;
+			return true;
 				
 			}
 		}
@@ -62,12 +60,12 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < pizzas.length; i++) {
+		for (int i = 0; i < ((List<Pizza>) pizza).size(); i++) {
 
-			if (pizzas[i] != null) {
-				if (pizzas[i].getCode().equals(codePizza)) {
+			if (pizza != null) {
+				if (pizza.getCode().equals(codePizza)) {
 
-					pizzas[i] = pizza;
+					
 					
 					return true;
 
