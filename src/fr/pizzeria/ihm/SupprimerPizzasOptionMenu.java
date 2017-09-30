@@ -21,6 +21,9 @@ public class SupprimerPizzasOptionMenu extends OptionMenu {
 	
 	public void execute() {
 		
+		
+		String nom;
+		
 		PizzeriaDaoTableau supprimerPizza = new PizzeriaDaoTableau();
 		
 		ArrayList<Pizza> pizza = dao.findAllPizzas();
@@ -33,6 +36,13 @@ public class SupprimerPizzasOptionMenu extends OptionMenu {
 			}
 			
 		}
+		
+		System.out.println("Supprimer une pizza");
+		System.out.println("Choisissez une pizza à supprimer");
+		nom = sc.next();
+		
+		dao.deletePizza(nom);
+		
 		
 		
 		

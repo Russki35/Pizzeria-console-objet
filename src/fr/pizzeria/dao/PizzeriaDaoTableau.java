@@ -44,8 +44,8 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 
 	@Override
 	public boolean saveNewPizza(Pizza pizza) {
-		// TODO Auto-generated method stub
-		for(int i = 0; i<((List<Pizza>) pizza).size(); i++){
+		
+		for(int i = 0; i < ((List<Pizza>) pizza).size(); i++){
 			
 			if (pizza != null) {
 
@@ -59,7 +59,7 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) {
-		// TODO Auto-generated method stub
+		
 		for (int i = 0; i < ((List<Pizza>) pizza).size(); i++) {
 
 			if (pizza != null) {
@@ -80,7 +80,22 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 
 	@Override
 	public boolean deletePizza(String codePizza) {
-		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < ((List<Pizza>) pizza).size(); i++) {
+
+			if (pizza != null) {
+				
+			}
+				if (pizza.getClass().equals(codePizza)) {
+
+					
+					
+					return true;
+
+				}
+
+			}
+		
 		return false;
 	}
 
