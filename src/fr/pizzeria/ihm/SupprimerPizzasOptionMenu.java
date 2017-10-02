@@ -22,7 +22,7 @@ public class SupprimerPizzasOptionMenu extends OptionMenu {
 	public void execute() {
 		
 		
-		String nom;
+		String codePizza;
 		
 		PizzeriaDaoTableau supprimerPizza = new PizzeriaDaoTableau();
 		
@@ -38,10 +38,10 @@ public class SupprimerPizzasOptionMenu extends OptionMenu {
 		}
 		
 		System.out.println("Supprimer une pizza");
-		System.out.println("Choisissez une pizza à supprimer");
-		nom = sc.next();
+		System.out.println("Choisissez une pizza ï¿½ supprimer");
+		codePizza = sc.next();
 		
-		dao.deletePizza(nom);
+		dao.deletePizza(codePizza);
 		
 		
 		
