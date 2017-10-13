@@ -1,10 +1,13 @@
 package fr.pizzeria.console;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
 
 import fr.pizzeria.dao.PizzeriaDaoTableau;
+import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.ihm.AjouterPizzasOptionMenu;
 import fr.pizzeria.ihm.ListerPizzasOptionMenu;
 import fr.pizzeria.ihm.ModifierPizzasOptionMenu;
@@ -19,11 +22,17 @@ public class PizzeriaAdminConsoleApp {
 
 		// Initialisation
 		Scanner questionUser = new Scanner(System.in).useLocale(Locale.US);
-		System.out.println("Liste des pizzas");
+		
 		
 		PizzeriaDaoTableau dao = new PizzeriaDaoTableau();
 		
 		// Affichage du menu
+		Map<String, OptionMenu> options = new HashMap();
+		options.put("1", new ListerPizzasOptionMenu(dao, questionUser));
+		options.put("2", new AjouterPizzasOptionMenu(dao, questionUser));
+		options.put("3", new ModifierPizzasOptionMenu(dao, questionUser));
+		options.put("4", new SupprimerPizzasOptionMenu(dao, questionUser));
+		
 		
 		boolean out = false;
 		while(!out){
@@ -38,45 +47,16 @@ public class PizzeriaAdminConsoleApp {
 			// Choix de l'utilisateur
 			System.out.println("Choisissez une option de menu:");
 			String choix = questionUser.next();
-			
-			if (choix.equals("1")){
-				
-				ListerPizzasOptionMenu listerPizzas = new ListerPizzasOptionMenu(dao, questionUser);
-				listerPizzas.execute();
-			}
-			
-			else if (choix.equals("2")){
-				
-				
-				AjouterPizzasOptionMenu ajouterPizza = new AjouterPizzasOptionMenu(dao, questionUser);
-				ajouterPizza.execute();
-
-				
-			}
-
-			else if (choix.equals("3")){
-				
-				
-				
-				
-				ModifierPizzasOptionMenu modifierPizzas = new ModifierPizzasOptionMenu(dao, questionUser);
-				modifierPizzas.execute();
-					
-
-			}
-			
-			else if (choix.equals("4")){
-				
-				SupprimerPizzasOptionMenu supprimerPizza = new SupprimerPizzasOptionMenu(dao, questionUser);
-				supprimerPizza.execute();
-			}
-			
-			else if(choix.equals("99")){
+			if(choix.equals("99")){
 				
 				out = true;
 				System.out.println("Bye !");
 				
 			}
+			else 
+				options.get(choix).execute();
+			
+			
 			
 		}
 		

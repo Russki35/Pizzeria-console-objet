@@ -39,14 +39,7 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 	@Override
 	public boolean saveNewPizza(Pizza pizza) {
 
-		for (int i = 0; i < ((List<Pizza>) pizza).size(); i++) {
-
-			if (pizza != null) {
-
-				return true;
-
-			}
-		}
+		listPizza.add(pizza);
 		return false;
 	}
 

@@ -28,14 +28,10 @@ public class AjouterPizzasOptionMenu extends OptionMenu {
 		System.out.println("Ajoutez le prix d'une pizza");
 		double prix = sc.nextDouble();
 
-		
 		Pizza pizza = new Pizza(code, nom, prix);
-		
-		PizzeriaDaoTableau ajoutPizza = new PizzeriaDaoTableau();
-		ajoutPizza.saveNewPizza(pizza);
 
-		}
+		dao.saveNewPizza(pizza);
 
 	}
 
-
+}

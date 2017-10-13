@@ -2,10 +2,10 @@ package fr.pizzeria.ihm;
 
 
 
-abstract class OptionMenu {
+public abstract class OptionMenu {
 	
 	
 	
-	protected abstract void execute();
+	public abstract void execute();
 
 }
