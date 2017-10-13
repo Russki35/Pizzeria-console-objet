@@ -14,11 +14,16 @@ import fr.pizzeria.ihm.ModifierPizzasOptionMenu;
 import fr.pizzeria.ihm.SupprimerPizzasOptionMenu;
 import fr.pizzeria.model.Pizza;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class PizzeriaAdminConsoleApp {
-
+	
+	private static final Logger LOG = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
+	
 	public static void main(String[] args) {
+
 
 		// Initialisation
 		Scanner questionUser = new Scanner(System.in).useLocale(Locale.US);
@@ -45,7 +50,7 @@ public class PizzeriaAdminConsoleApp {
 			System.out.println("99. Sortir");
 			
 			// Choix de l'utilisateur
-			System.out.println("Choisissez une option de menu:");
+			LOG.info("Choisissez une option de menu:");
 			String choix = questionUser.next();
 			if(choix.equals("99")){
 				
