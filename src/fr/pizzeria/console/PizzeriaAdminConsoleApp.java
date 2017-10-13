@@ -42,12 +42,12 @@ public class PizzeriaAdminConsoleApp {
 		boolean out = false;
 		while(!out){
 			
-			System.out.println("***** Pizzeria Administration *****");
-			System.out.println("1. Lister les pizzas");
-			System.out.println("2. Ajouter une nouvelle pizza");
-			System.out.println("3. Mettre à jour une pizza");
-			System.out.println("4. Supprimer une pizza");
-			System.out.println("99. Sortir");
+			LOG.info("***** Pizzeria Administration *****");
+			LOG.info("1. Lister les pizzas");
+			LOG.info("2. Ajouter une nouvelle pizza");
+			LOG.info("3. Mettre à jour une pizza");
+			LOG.info("4. Supprimer une pizza");
+			LOG.info("99. Sortir");
 			
 			// Choix de l'utilisateur
 			LOG.info("Choisissez une option de menu:");
@@ -55,7 +55,7 @@ public class PizzeriaAdminConsoleApp {
 			if(choix.equals("99")){
 				
 				out = true;
-				System.out.println("Bye !");
+				LOG.info("Bye !");
 				
 			}
 			else 
