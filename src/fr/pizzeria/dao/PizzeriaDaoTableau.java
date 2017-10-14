@@ -79,14 +79,14 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 	}
 
 	@Override
-	public boolean deletePizza(String codePizza) {
+	public boolean deletePizza(String nom, Pizza pizza) {
 		
 		for (int i = 0; i < ((List<Pizza>) pizza).size(); i++) {
 
 			if (pizza != null) {
 				
 			}
-				if (pizza.getClass().equals(codePizza)) {
+				if (pizza.getClass().equals(nom)) {
 
 					
 					
@@ -98,5 +98,8 @@ public class PizzeriaDaoTableau implements IPizzaDao {
 		
 		return false;
 	}
+
+	
+
 
 }

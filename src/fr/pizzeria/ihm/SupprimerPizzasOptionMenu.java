@@ -41,7 +41,7 @@ public class SupprimerPizzasOptionMenu extends OptionMenu {
 		System.out.println("Choisissez une pizza à supprimer");
 		nom = sc.next();
 		
-		dao.deletePizza(nom);
+		dao.deletePizza(nom, pizza);
 		
 		
 		
