@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class PizzeriaDaoTableau implements IPizzaDao {
-	
 
 	private ArrayList <Pizza> pizza = new ArrayList<Pizza>();
 
