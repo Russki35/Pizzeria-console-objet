@@ -1,10 +1,9 @@
 package fr.pizzeria.ihm;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzeriaDaoTableau;
 import fr.pizzeria.model.Pizza;
 
 public class ListerPizzasOptionMenu extends OptionMenu {
@@ -21,7 +20,7 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 
 	public void execute(){
 		 
-		 ArrayList<Pizza> pizza = dao.findAllPizzas();
+		List<Pizza> pizza = dao.findAllPizzas();
 		 
 		 for(int i = 0; i < pizza.size(); i++){
 			 
