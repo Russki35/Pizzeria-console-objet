@@ -5,8 +5,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
-
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzeriaDaoTableau;
+import fr.pizzeria.dao.jdbc.PizzaDaoJDBC;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.ihm.AjouterPizzasOptionMenu;
 import fr.pizzeria.ihm.ListerPizzasOptionMenu;
@@ -29,7 +30,7 @@ public class PizzeriaAdminConsoleApp {
 		Scanner questionUser = new Scanner(System.in).useLocale(Locale.US);
 		
 		
-		PizzeriaDaoTableau dao = new PizzeriaDaoTableau();
+		IPizzaDao dao = new PizzaDaoJDBC();
 		
 		// Affichage du menu
 		Map<String, OptionMenu> options = new HashMap();

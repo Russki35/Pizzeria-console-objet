@@ -3,15 +3,16 @@ package fr.pizzeria.ihm;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzeriaDaoTableau;
 import fr.pizzeria.model.Pizza;
 
 public class ListerPizzasOptionMenu extends OptionMenu {
 
-	PizzeriaDaoTableau dao;
+	IPizzaDao dao;
 	Scanner sc;
 
-	public ListerPizzasOptionMenu(PizzeriaDaoTableau dao, Scanner sc) {
+	public ListerPizzasOptionMenu(IPizzaDao dao, Scanner sc) {
 
 		this.dao = dao;
 		this.sc = sc;
