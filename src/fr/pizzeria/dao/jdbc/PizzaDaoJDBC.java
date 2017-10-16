@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class PizzaDaoJDBC implements IPizzaDao {
 
 	Connection conn;
 	Statement statement;
+	Connection dbConnection = null;
+	PreparedStatement preparedStatement = null;
 
 	public PizzaDaoJDBC() {
 
@@ -43,25 +46,66 @@ public class PizzaDaoJDBC implements IPizzaDao {
 
 	}
 
-	@Override
-	public ArrayList<Pizza> findAllPizzas() {
-		try {
+	/**
+	 * @return
+	 * @throws SQLException 
+	 */
+	
 
-			statement = conn.createStatement();
-			ResultSet resultat = statement.executeQuery("SELECT * FROM pizzas");
+	@Override
+	public ArrayList<Pizza> findAllPizzas() throws SQLException {
+		try {
 			
-			while(resultat.next()){
-				Integer id = resultat.getInt("id");
-				String nom = resultat.getString("nom");
-				BigDecimal prix = resultat.getBigDecimal("prix");
+			ArrayList<Pizza> liste = new ArrayList<>();
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement("SELECT * FROM pizzas");
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				
+				Integer id = rs.getInt("id");
+				String code = rs.getString("code");
+				String nom = rs.getString("nom");
+				double prix = rs.getDouble("prix");
+				
+				Pizza p = new Pizza(code, nom, prix);
+				p.setCode(code);
+				p.setNom(nom);
+				p.setPrix(prix);
+				
+				liste.add(p);
+				
+				return liste;
 			}
 			
-			resultat.close();
+					
+
 			
 		} catch (SQLException e) {
 
 			e.getMessage();
 		}
+		
+		finally {
+
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+
+		}
+		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	private Connection getDBConnection() {
+		
 		return null;
 	}
 
@@ -83,7 +127,12 @@ public class PizzaDaoJDBC implements IPizzaDao {
 			return false;
 		}
 		return false;
+		
+		
+
 	}
+	
+	
 
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) {
