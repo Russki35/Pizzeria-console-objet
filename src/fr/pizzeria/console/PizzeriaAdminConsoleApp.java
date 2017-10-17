@@ -75,7 +75,7 @@ public class PizzeriaAdminConsoleApp {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pizzeria");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
-		
+		Pizza p = new Pizza();
 			
 			
 	}
