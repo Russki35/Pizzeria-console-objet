@@ -5,6 +5,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzeriaDaoTableau;
 import fr.pizzeria.dao.jdbc.PizzaDaoJDBC;
@@ -67,6 +71,9 @@ public class PizzeriaAdminConsoleApp {
 			
 			
 		}
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pizzeria");
+		EntityManager em = entityManagerFactory.createEntityManager();
 		
 		
 			
