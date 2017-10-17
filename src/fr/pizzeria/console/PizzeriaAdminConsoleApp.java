@@ -1,6 +1,8 @@
 package fr.pizzeria.console;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
@@ -27,6 +29,8 @@ public class PizzeriaAdminConsoleApp {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
 	
+	private static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+	
 	public static void main(String[] args) {
 
 
@@ -34,15 +38,44 @@ public class PizzeriaAdminConsoleApp {
 		Scanner questionUser = new Scanner(System.in).useLocale(Locale.US);
 		
 		
-		IPizzaDao dao = new PizzaDaoJDBC();
+		//IPizzaDao dao = new PizzaDaoJDBC();
 		
 		// Affichage du menu
-		Map<String, OptionMenu> options = new HashMap();
-		options.put("1", new ListerPizzasOptionMenu(dao, questionUser));
-		options.put("2", new AjouterPizzasOptionMenu(dao, questionUser));
-		options.put("3", new ModifierPizzasOptionMenu(dao, questionUser));
-		options.put("4", new SupprimerPizzasOptionMenu(dao, questionUser));
+//		Map<String, OptionMenu> options = new HashMap();
+//		options.put("1", new ListerPizzasOptionMenu(dao, questionUser));
+//		options.put("2", new AjouterPizzasOptionMenu(dao, questionUser));
+//		options.put("3", new ModifierPizzasOptionMenu(dao, questionUser));
+//		options.put("4", new SupprimerPizzasOptionMenu(dao, questionUser));
 		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pizzeria");
+		EntityManager em = entityManagerFactory.createEntityManager();
+		
+		
+		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.5);
+		pizzas.add(pizza0);
+		Pizza pizza1 = new Pizza("MAR", "Margarita", 14);
+		pizzas.add(pizza1);
+		Pizza pizza2 = new Pizza("REI", "La Reine", 11.5);
+		pizzas.add(pizza2);
+		Pizza pizza3 = new Pizza("FRO", "La Quatre Fromages", 12);
+		pizzas.add(pizza3);
+		Pizza pizza4 = new Pizza("CAN", "La Cannibale", 12.5);
+		pizzas.add(pizza4);
+		Pizza pizza5 = new Pizza("SAV", "La Savoyarde", 13);
+		pizzas.add(pizza5);
+		Pizza pizza6 = new Pizza("ORI", "L'Orientale", 13.5);
+		pizzas.add(pizza6);
+		Pizza pizza7 = new Pizza("IND", "L'indienne", 14);
+		pizzas.add(pizza7);
+		
+		for (Pizza pizza : pizzas) {
+			insert(em, pizza);
+			
+		}
+		
+		
+		em.close();
+		entityManagerFactory.close();
 		
 		boolean out = false;
 		while(!out){
@@ -65,19 +98,26 @@ public class PizzeriaAdminConsoleApp {
 				LOG.info("Bye !");
 				
 			}
-			else 
-				options.get(choix).execute();
+			//else 
+				//options.get(choix).execute();
 			
 			
 			
 		}
 		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pizzeria");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		Pizza p = new Pizza();
+
 			
 			
+	}
+
+	/**
+	 * @param em
+	 * @param p
+	 */
+	private static void insert(EntityManager em, Pizza p) {
+		em.getTransaction().begin();
+		em.persist(p);
+		em.getTransaction().commit();
 	}
 
 		
