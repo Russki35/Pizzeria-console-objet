@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -41,7 +42,11 @@ public class PizzaDaoJpa implements IPizzaDao {
 	public boolean saveNewPizza(Pizza pizza) {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		
 		em.persist(pizza);
+		et.commit();
 		em.close();
 		return false;
 	}
@@ -50,7 +55,9 @@ public class PizzaDaoJpa implements IPizzaDao {
 	public boolean updatePizza(String codePizza, Pizza pizza) {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
-
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		
 		Query query = em.createQuery("select p from pizzas where p.code='" + codePizza + "'");
 		Pizza pizza1 = (Pizza) query.getSingleResult();
 
@@ -61,7 +68,10 @@ public class PizzaDaoJpa implements IPizzaDao {
 			pizza2.setPrix(pizza1.getPrix());
 			em.merge(pizza2);
 		}
-
+		
+		et.commit();
+		em.close();
+		
 		return false;
 	}
 
@@ -69,6 +79,8 @@ public class PizzaDaoJpa implements IPizzaDao {
 	public boolean deletePizza(String codePizza) {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
 
 		Query query = em.createQuery("select p from pizzas where p.code='" + codePizza + "'");
 		Pizza pizza1 = (Pizza) query.getSingleResult();
@@ -77,6 +89,9 @@ public class PizzaDaoJpa implements IPizzaDao {
 			em.remove(pizza1);
 
 		}
+		
+		et.commit();
+		em.close();
 
 		return false;
 
