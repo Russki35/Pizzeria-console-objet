@@ -31,7 +31,7 @@ public class PizzaDaoJpa implements IPizzaDao {
 	public List<Pizza> findAllPizzas() throws SQLException {
 		EntityManager em = entityManagerFactory.createEntityManager();
 
-		Query query = em.createQuery("FROM pizzas");
+		Query query = em.createQuery("FROM Pizza");
 		Pizza p = (Pizza) query.getResultList().get(0);
 
 		em.close();
@@ -45,28 +45,32 @@ public class PizzaDaoJpa implements IPizzaDao {
 		EntityTransaction et = em.getTransaction();
 		et.begin();
 		
-		em.persist(pizza);
-		et.commit();
+		Query query = em.createQuery("select p from Pizza p where p.code='" + pizza.getCode() + "'");
+		List resultList = query.getResultList();
+		if (resultList.size()==0){
+			em.persist(pizza);
+			et.commit();
+		}
+		
 		em.close();
 		return false;
 	}
 
 	@Override
-	public boolean updatePizza(String codePizza, Pizza pizza) {
+	public boolean updatePizza(String codePizza, Pizza pizzaFromSaisie) {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
 		
-		Query query = em.createQuery("select p from pizzas where p.code='" + codePizza + "'");
-		Pizza pizza1 = (Pizza) query.getSingleResult();
+		Query query = em.createQuery("select p from Pizza p where p.code='" + codePizza + "'");
+		Pizza pizzaFromBase = (Pizza) query.getSingleResult();
 
-		if (pizza1 != null) {
-			Pizza pizza2 = new Pizza();
-			pizza2.setCode(pizza1.getCode());
-			pizza2.setNom(pizza1.getNom());
-			pizza2.setPrix(pizza1.getPrix());
-			em.merge(pizza2);
+		if (pizzaFromBase != null) {
+			pizzaFromBase.setCode(pizzaFromSaisie.getCode());
+			pizzaFromBase.setNom(pizzaFromSaisie.getNom());
+			pizzaFromBase.setPrix(pizzaFromSaisie.getPrix());
+			em.merge(pizzaFromBase);
 		}
 		
 		et.commit();
@@ -82,7 +86,7 @@ public class PizzaDaoJpa implements IPizzaDao {
 		EntityTransaction et = em.getTransaction();
 		et.begin();
 
-		Query query = em.createQuery("select p from pizzas where p.code='" + codePizza + "'");
+		Query query = em.createQuery("select p from Pizza p where p.code='" + codePizza + "'");
 		Pizza pizza1 = (Pizza) query.getSingleResult();
 
 		if (pizza1 != null) {

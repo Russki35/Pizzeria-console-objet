@@ -93,8 +93,8 @@ public class PizzeriaAdminConsoleApp {
 				LOG.info("Bye !");
 				
 			}
-			//else 
-				//options.get(choix).execute();									
+			else 
+				options.get(choix).execute();									
 		}
 								
 	}
