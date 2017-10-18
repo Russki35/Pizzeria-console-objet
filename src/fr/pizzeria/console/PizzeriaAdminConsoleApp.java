@@ -12,8 +12,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzeriaDaoTableau;
-import fr.pizzeria.dao.jdbc.PizzaDaoJDBC;
+import fr.pizzeria.dao.impl.PizzaDaoJDBC;
+import fr.pizzeria.dao.impl.PizzaDaoJpa;
+import fr.pizzeria.dao.impl.PizzeriaDaoTableau;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.ihm.AjouterPizzasOptionMenu;
 import fr.pizzeria.ihm.ListerPizzasOptionMenu;
@@ -38,17 +39,14 @@ public class PizzeriaAdminConsoleApp {
 		Scanner questionUser = new Scanner(System.in).useLocale(Locale.US);
 		
 		
-		//IPizzaDao dao = new PizzaDaoJDBC();
+		IPizzaDao dao = new PizzaDaoJpa();
 		
 		// Affichage du menu
-//		Map<String, OptionMenu> options = new HashMap();
-//		options.put("1", new ListerPizzasOptionMenu(dao, questionUser));
-//		options.put("2", new AjouterPizzasOptionMenu(dao, questionUser));
-//		options.put("3", new ModifierPizzasOptionMenu(dao, questionUser));
-//		options.put("4", new SupprimerPizzasOptionMenu(dao, questionUser));
-		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pizzeria");
-		EntityManager em = entityManagerFactory.createEntityManager();
+		Map<String, OptionMenu> options = new HashMap();
+		options.put("1", new ListerPizzasOptionMenu(dao, questionUser));
+		options.put("2", new AjouterPizzasOptionMenu(dao, questionUser));
+		options.put("3", new ModifierPizzasOptionMenu(dao, questionUser));
+		options.put("4", new SupprimerPizzasOptionMenu(dao, questionUser));
 		
 		
 		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.5);
@@ -69,13 +67,10 @@ public class PizzeriaAdminConsoleApp {
 		pizzas.add(pizza7);
 		
 		for (Pizza pizza : pizzas) {
-			insert(em, pizza);
 			
+			dao.saveNewPizza(pizza);
 		}
-		
-		
-		em.close();
-		entityManagerFactory.close();
+	
 		
 		boolean out = false;
 		while(!out){
@@ -99,29 +94,17 @@ public class PizzeriaAdminConsoleApp {
 				
 			}
 			//else 
-				//options.get(choix).execute();
-			
-			
-			
+				//options.get(choix).execute();									
 		}
-		
-
-			
-			
+								
 	}
 
-	/**
-	 * @param em
-	 * @param p
-	 */
-	private static void insert(EntityManager em, Pizza p) {
-		em.getTransaction().begin();
-		em.persist(p);
-		em.getTransaction().commit();
-	}
-
+	
+	
+	
+	
+	
 		
-
 }
 
 

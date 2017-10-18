@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzeriaDaoTableau;
+import fr.pizzeria.dao.impl.PizzeriaDaoTableau;
 import fr.pizzeria.model.Pizza;
 
 public class SupprimerPizzasOptionMenu extends OptionMenu {

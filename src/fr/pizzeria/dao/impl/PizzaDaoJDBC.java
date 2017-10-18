@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.pizzeria.dao.jdbc;
+package fr.pizzeria.dao.impl;
 
 import java.sql.Statement;
 import java.math.BigDecimal;
