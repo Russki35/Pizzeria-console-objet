@@ -8,15 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.pizzeria.dao.IPizzaDao;
 
 public abstract class OptionMenu {
-	@Autowired
+	
 	protected Scanner sc;
 	
-	@Autowired
 	protected Logger LOG;
 	
-	@Autowired
 	protected IPizzaDao dao;
 	
 	public abstract void execute();
+	
+	/**
+	 * 
+	 */
+	public OptionMenu(Scanner sc, Logger LOG, IPizzaDao dao) {
+		this.sc=sc;
+		this.LOG=LOG;
+		this.dao=dao;
+	}
 
 }
