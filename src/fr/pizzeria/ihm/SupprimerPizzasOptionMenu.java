@@ -9,15 +9,7 @@ import fr.pizzeria.model.Pizza;
 
 public class SupprimerPizzasOptionMenu extends OptionMenu {
 	
-	IPizzaDao dao;
-	Scanner sc;
-
-	public SupprimerPizzasOptionMenu(IPizzaDao dao, Scanner sc){
-		
-		this.dao = dao;
-		this.sc = sc;
-		
-	}
+	
 	
 	
 	public void execute() {

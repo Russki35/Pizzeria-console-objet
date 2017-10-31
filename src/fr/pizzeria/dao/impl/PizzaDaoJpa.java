@@ -12,6 +12,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Controller;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
@@ -19,6 +21,7 @@ import fr.pizzeria.model.Pizza;
  * @author ETY8
  *
  */
+@Controller
 public class PizzaDaoJpa implements IPizzaDao {
 
 	private EntityManagerFactory entityManagerFactory;
